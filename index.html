@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Distance Calculator</title>
+<style>
+body{font-family:Arial;background:#e0f2fe;padding:25px}
+main{max-width:480px;margin:40px auto;background:white;padding:30px;border-radius:16px}
+input{width:100%;padding:13px;margin:10px 0;box-sizing:border-box;border:1px solid #7dd3fc;border-radius:8px}
+button{width:100%;background:#0284c7;color:white;padding:14px;border:0;border-radius:8px;cursor:pointer}
+#result{background:#e0f2fe;padding:20px;margin-top:20px;border-radius:10px;white-space:pre-line;line-height:2}
+</style>
+</head>
+<body>
+<main>
+<h1>Distance Calculator</h1>
+<p>Calculate travel distance using speed and time.</p>
+<label>Average Speed (km/h)</label>
+<input id="speed" type="number" min="0" step="any" placeholder="Enter speed">
+<label>Travel Hours</label>
+<input id="hours" type="number" min="0" value="1">
+<label>Additional Minutes</label>
+<input id="minutes" type="number" min="0" max="59" value="0">
+<button onclick="calculate()">Calculate Distance</button>
+<div id="result">Your result will appear here.</div>
+</main>
+<script>
+function calculate(){
+ const speed=document.getElementById("speed");
+ const hours=Number(document.getElementById("hours").value);
+ const minutes=Number(document.getElementById("minutes").value);
+ const s=Number(speed.value);
+ const out=document.getElementById("result");
+ if(speed.value===""||s<0||hours<0||minutes<0||minutes>=60){
+  out.textContent="Enter valid travel information.";
+  return;
+ }
+ const distance=s*(hours+minutes/60);
+ out.textContent="Distance: "+distance.toFixed(2)+" km"+
+ "\nMiles: "+(distance/1.609344).toFixed(2)+" mi"+
+ "\nMeters: "+(distance*1000).toFixed(2)+" m";
+}
+</script>
+</body>
+</html>
